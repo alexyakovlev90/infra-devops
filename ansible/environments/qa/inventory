@@ -1,0 +1,11 @@
+[postgres]
+dbserver ansible_host=<ip>
+
+[kafka]
+kafkaserver ansible_host=<ip>
+
+[zookeeper]
+zookeeperserver ansible_host=<ip>
+
+
+

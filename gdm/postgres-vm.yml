@@ -1,0 +1,33 @@
+---
+resources:
+  - name: postgres-fw
+    type: compute.v1.firewall
+    properties:
+      targetTags: ["postgres-ports"]
+      sourceRanges: ["0.0.0.0/0"]
+      allowed:
+        - IPProtocol: TCP
+          ports: ["5432"]
+
+  - name: postgres-vm
+    type: compute.v1.instance
+    properties:
+      tags:
+        items: ["postgres-ports"]
+      zone: europe-west4-b
+      machineType: https://www.googleapis.com/compute/v1/projects/devops-practice-test/zones/europe-west4-b/machineTypes/g1-small
+      disks:
+        - deviceName: boot
+          type: PERSISTENT
+          boot: true
+          autoDelete: true
+          initializeParams:
+            sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/family/ubuntu-1604-lts
+            diskSizeGb: 20
+      networkInterfaces:
+        - network: https://www.googleapis.com/compute/v1/projects/devops-practice-test/global/networks/default
+          accessConfigs:
+            - name: External NAT
+              type: ONE_TO_ONE_NAT
+
+

@@ -1,0 +1,7 @@
+# http://apache.mirror.anlx.net/zookeeper/ - mirror
+sansible_zookeeper_version: 3.4.14
+
+# If Internal IP is 10.164.0.7 and port is 9092 and
+# External IP is 35.204.82.239 and port is 3101 then your propert will look like ,
+kafka_internal_host: 10.164.0.7
+kafka_external_host: 35.204.82.239
